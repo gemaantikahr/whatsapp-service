@@ -1,18 +1,18 @@
 package response
 
-func Api() apiResponse {
-	return apiResponse{}
+func Api() ApiResponse {
+	return ApiResponse{}
 }
 
-type apiResponse struct {
+type ApiResponse struct {
 	Status  bool        `json:"status"`
 	Message string      `json:"message"`
 	Method  string      `json:"method"`
 	Data    interface{} `json:"data"`
 }
 
-func (apiResponse) Error(message string, method string, data interface{}) apiResponse {
-	return apiResponse{
+func (ApiResponse) Error(message string, method string, data interface{}) ApiResponse {
+	return ApiResponse{
 		Status:  false,
 		Message: message,
 		Method:  method,
@@ -20,8 +20,8 @@ func (apiResponse) Error(message string, method string, data interface{}) apiRes
 	}
 }
 
-func (apiResponse) Success(message string, method string, data interface{}) apiResponse {
-	return apiResponse{
+func (ApiResponse) Success(message string, method string, data interface{}) ApiResponse {
+	return ApiResponse{
 		Status:  true,
 		Message: message,
 		Method:  method,

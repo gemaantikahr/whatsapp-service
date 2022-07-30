@@ -8,9 +8,9 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type api struct{}
+type Api struct{}
 
-func (a api) Do(router *base.Router) {
+func (a Api) Do(router *base.Router) {
 	api := router.Group("/api")
 
 	// Just for example
@@ -29,6 +29,6 @@ func (a api) Do(router *base.Router) {
 
 }
 
-func Init() api {
-	return api{}
+func Init() Api {
+	return Api{}
 }
