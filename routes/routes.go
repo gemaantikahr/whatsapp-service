@@ -15,5 +15,9 @@ func Init() {
 	api.Init().Do(router)
 	web.Init().Do(router)
 
-	router.Run()
+	err := router.Run()
+	if err != nil {
+		println("something went wrong !")
+		return
+	}
 }
