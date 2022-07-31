@@ -14,10 +14,18 @@ type WhatsappController struct {
 
 func (c WhatsappController) SendMessage(ctx *gin.Context) {
 
+	// binding request to send message request dto
 	var sendMessageRequestDTO request.SendMessageRequestDTO
 	errDTO := ctx.ShouldBind(&sendMessageRequestDTO)
 	if errDTO != nil {
 		ctx.JSON(http.StatusBadRequest, response.Api().Error(errDTO.Error(), "send_message", nil))
+		return
+	}
+
+	// validation the request
+	errValidate := sendMessageRequestDTO.ValidateSendMessageRequestDTO()
+	if errValidate != nil {
+		ctx.JSON(http.StatusBadRequest, response.Api().Error(errValidate.Error(), "send_message", nil))
 		return
 	}
 
