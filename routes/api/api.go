@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"whatsapp_service/app/base"
 	"whatsapp_service/app/controllers"
+	"whatsapp_service/app/middleware"
 
 	"github.com/gin-gonic/gin"
 )
@@ -24,7 +25,7 @@ func (a Api) Do(router *base.Router) {
 		})
 	})
 
-	apiWhatsapp := router.Group("/api/whatsapp")
+	apiWhatsapp := router.Group("/api/whatsapp", middleware.AppMiddleware{}.Do())
 	apiWhatsapp.POST("/send", controllers.WhatsappController{}.SendMessage)
 
 }
